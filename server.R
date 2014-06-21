@@ -5,8 +5,11 @@ distance <- function(speed,units){
   if (units == "mph"){
     dist <- speed * as.double(lin_model$coefficients[1])
   }
-  else {
-    dist <- speed *as.double(lin_model$coefficients[1]) *0.3048
+  else if (units == "km/h"){
+    dist <- speed/1.609344 *as.double(lin_model$coefficients[1]) * 0.3048
+  }
+  else if (units == "m/s"){
+    dist <- speed *3600 /1609.344 *as.double(lin_model$coefficients[1]) * 0.3048
   }
   dist
 }
